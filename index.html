@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Will you be my Valentine?</h1>
+        <h1>Hi <span id="person_name"></span>! Will you be my Valentine?</h1>
         <div class="buttons">
             <button class="yes-button" onclick="handleYesClick()">Yes</button>
             <button class="no-button" onclick="handleNoClick()">No</button>
@@ -18,5 +18,17 @@
         </div>
     </div>
     <script src="script.js"></script>
+    <script>
+        let person_name = "Peeps";
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+            get: (searchParams, prop) => searchParams.get(prop),
+        });
+        // Get the value of "some_key" in eg "https://example.com/?some_key=some_value"
+        console.log(params)
+        if (params?.name) {
+            person_name = params?.name;
+        }
+        document.getElementById("person_name").innerText = person_name;
+    </script>
 </body>
 </html>
